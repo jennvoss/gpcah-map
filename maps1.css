@@ -1,6 +1,7 @@
 body {
 	margin: 10px;
 	font-family: arial, helvetica, sans-serif;
+	font-size: 75%;
 	background: #fff;
 }
 .clearfix {
@@ -19,6 +20,7 @@ body {
 }
 
 .mapbox {
+	width: 880px;
 	border: 1px solid #BBB;
 	border-radius: 5px;
 	padding: 5px;
@@ -39,6 +41,13 @@ body {
 	float: left;
 	border: 1px solid #BBB;
 }
-	#county-info span {
+	#county-info ul {
+		margin: 0 0 10px;
+		padding: 0;
+	}
+	#county-info li {
 		display: block;
+		margin: 0;
+		padding: 0 0 0 5px;
+		list-style: outside;
 	}

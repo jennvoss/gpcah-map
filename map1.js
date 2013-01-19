@@ -3,8 +3,9 @@
     var that = this;
     var map;
     var geojson;
-    var $info;
-
+    var $info = $('#county-info'),
+		$county_name = $('.county-name', $info);
+		
     var GEOCoder = countyDataMap_GEOCoder();
     var GEOStyles = countyDataMap_GEOStyles();
     var stateBoxData = GEOCoder.getStateBoxData();
@@ -81,16 +82,11 @@
     var updateInfo = function (props) {
       if(props)
       {
-        $info.html('<h4>'+props.name+'</h4>');
-      }
-      else
-      {
-        $info.html( '<h4>hover over county</h4>');
+        $county_name.html(props.county_name);
       }
     };
 
     var initMap = function() {
-      $info = $('#countyInfo');
       updateInfo();
 
       map = L.map('map').setView([0, 0],0);//setView([41, -77.5], 7);
