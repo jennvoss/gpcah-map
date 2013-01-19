@@ -1,4 +1,4 @@
-var countyHungerDataMap_CountyGEOData =
+var countyDataMap_CountyGEOData =
 {
         "type": "FeatureCollection",
         "properties": {
