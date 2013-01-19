@@ -1,5 +1,5 @@
-var countyDataMap_GEOCoder =
-function(){
+var countyDataMap_GEOCoder = (function($){
+  return function(){
 
   var getStateBoxData = function(){
     return {"type":"FeatureCollection","features":[
@@ -14,15 +14,25 @@ function(){
     ]};
   }
 
+  var GEOData = countyDataMap_CountyGEOData;
+  var hungerData = countyDataMap_Data;
+
   var getCountyData = function(){
-    return countyDataMap_CountyGEOData;
+    var temp = [];
+    var idx = 0;
+    for(idx = 0; idx<hungerData.length-1; idx++){
+      temp[hungerData[idx]["county-name"]] = hungerData[idx];
+    }
+    
+    return GEOData;
   }
 
 return {
   "getStateBoxData": getStateBoxData,
   "getCountyData": getCountyData
 };
-
+  };
+})(jQuery);
 
 //    {"type":"FeatureCollection","features":[
 //      {"type":"Feature","id":"42","properties":{"name":"Pennsylvania","density":284.3},"geometry":{"type":"Polygon","coordinates":[
@@ -64,4 +74,3 @@ return {
 //      ]}}
 //    ]};
 
-};

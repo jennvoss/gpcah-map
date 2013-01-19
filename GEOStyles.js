@@ -1,4 +1,5 @@
-var countyDataMap_GEOStyles = function() {
+var countyDataMap_GEOStyles = (function($){
+return function() {
   var stateBox = {
     weight: 0,
     opacity: 0,
@@ -25,8 +26,11 @@ var countyDataMap_GEOStyles = function() {
         fillColor: '#FF00A0'
   };
 
+  var colors =  ['#FFC77F', '#FDB96F', '#FCBA51', '#FAB247', '#F9913E', '#F78931', '#F67124', '#F46817', '#F64B06', '#F54002'];
+
   var getColor = function(d) {
-    return '#FFEDA0';
+    var idx = Math.round((colors.length-1)*d);
+    return colors[idx];
   };
   
   var coloredCounty = function(percentage, fnGetColor) {
@@ -46,3 +50,4 @@ var countyDataMap_GEOStyles = function() {
     "coloredCounty": coloredCounty
   };
 };
+})(jQuery);
