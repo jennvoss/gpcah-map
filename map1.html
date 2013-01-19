@@ -1,36 +1,43 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-
- <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
- <!--[if lte IE 8]>
-     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
- <![endif]-->
-
-<link rel="stylesheet" href="maps1.css" />
-
-<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
-<script src="GEOCoder.js"></script>
-<script src="GEOStyles.js"></script>
-<script src="CountyGEOData.js"></script>
-<script src="CountyHungerData.js"></script>
-<script src="map1.js"></script>
-
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>My Map 1</title>
-</head>
-<body>
-<h1>MyMap1</h1>
+	<title>My Map 1</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
+	<!--[if lte IE 8]>
+	   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
+	<![endif]-->
+	<link rel="stylesheet" href="maps1.css" />
 
-<div class=""
-<div class="mapbox">
-  <div id="countyInfo"><h4>test</h4></div>
-  <div id="map">
-  </div>
-</div>
+</head>
+
+<body>
+	<h1>MyMap1</h1>
+	<p>Hover over a county to view more info.</p>
+
+	<div class="mapbox clearfix">
+		<div id="map"></div>
+		<div id="county-info">
+			<h2 class="county-name">County</h2>
+			<span class="population">Total population</span>
+			<span class="food-ins-rate">Food insecurity rate</span>
+			<span class="food-ins-rate-child">Child food insecurity rate</span>
+			
+			<span class="snap">SNAP participants</span>
+			<span class="snap-percentage">Percentage of population receiving SNAP</span>
+			<span class="wic">Number of WIC participants</span>
+			<span class="free-lunch">Number Free and Reduced-Price School Lunch recipients</span>
+			<span class="free-breakfast">Number of Free and Reduced-Price School Breakfast recipients</span>
+			<span class="food-banks">Number of State Food Purchase Program (Food Banks) participants</span>
+		</div>
+	</div>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="GEOCoder.js"></script>
+	<script src="GEOStyles.js"></script>
+	<script src="CountyGEOData.js"></script>
+	<script src="CountyHungerData.js"></script>
+	<script src="map1.js"></script>
+	
 </body>
 </html>
-
