@@ -6,6 +6,7 @@
     var $info;
 
     var GEOCoder = countyDataMap_GEOCoder();
+    var GEOStyles = countyDataMap_GEOStyles();
     var stateBoxData = GEOCoder.getStateBoxData();
     var countyData = GEOCoder.getCountyData();
 
@@ -30,40 +31,21 @@
 
     };
 
-    var getColor = function(d) {
-        return '#FFEDA0';
+    var getColorDefiningValue = function(feature){
+      return feature.properties.density;
     };
 
     var style = function(feature) {
-        return {
-            weight: 1,
-            color: '#FFF',
-            dashArray: '',
-            opacity: 1,
-            fillOpacity: 0.7,
-            fillColor: getColor(feature.properties.density)
-        };
+        return GEOStyles.coloredCounty(getColorDefiningValue(feature));
     };
 
     var stateBoxStyle = function(feature) {
-        return {
-            weight: 0,
-            opacity: 0,
-            color: 'white',
-            dashArray: '',
-            fillOpacity: 0,
-            fillColor: '#000000'
-        };
+        return GEOStyles.stateBox;
     };
 
     var highlightCounty = function (feature, layer) {
 
-      layer.setStyle({
-        weight: 4,
-        color: '#FFF',
-        dashArray: '',
-        fillOpacity: 0.7
-      });
+      layer.setStyle(GEOStyles.highlightCounty);
 
 //      if (!L.Browser.ie && !L.Browser.opera && typeof(layer.bringToFront) === 'function') {
 //        layer.bringToFront();
@@ -74,12 +56,7 @@
 
     var resetCounty = function (feature, layer) {
 
-      layer.setStyle({
-        weight: 1,
-        color: '#FFF',
-        dashArray: '',
-        fillOpacity: 0.7
-      });
+      layer.setStyle(GEOStyles.coloredCounty(getColorDefiningValue(feature)));
 
       updateInfo();
     };
