@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>My Map 1</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
+	<!--[if lte IE 8]>
+	   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
+	<![endif]-->
+	<link rel="stylesheet" href="maps1.css" />
+
+</head>
+
+<body>
+	<div id="main">
+		<h1>MyMap1</h1>
+		<p>Hover over a county to view more info.</p>
+
+		<div class="mapbox clearfix">
+			<div id="map"></div>
+			<div id="county-info">
+				<h2 class="county-name">County</h2>
+				<ul>
+					<li class="demographic-data population">
+						<span class="demographic-data-label">Total population</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data food-ins-rate">
+						<span class="demographic-data-label">Food insecurity rate</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data food-ins-rate-child">
+						<span class="demographic-data-label">Child food insecurity rate</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+				</ul>
+				<ul>
+					<li class="demographic-data snap">
+						<span class="demographic-data-label">SNAP participants</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data snap-percentage">
+						<span class="demographic-data-label">Percentage of population receiving SNAP</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data wic">
+						<span class="demographic-data-label">Number of WIC participants</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data free-lunch">
+						<span class="demographic-data-label">Number Free and Reduced-Price School Lunch recipients</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data free-breakfast">
+						<span class="demographic-data-label">Number Free and Reduced-Price School Breakfast recipients</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data food-banks">
+						<span class="demographic-data-label">Number of State Food Purchase Program (Food Banks) participants</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="GEOCoder.js"></script>
+	<script src="GEOStyles.js"></script>
+	<script src="CountyGEOData.js"></script>
+	<script src="CountyHungerData.js"></script>
+	<script src="map1.js"></script>
+	
+</body>
+</html>
