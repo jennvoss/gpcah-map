@@ -3,13 +3,14 @@
     var that = this;
     var map;
     var geojson;
-    var $info = $('#county-info'),
-		$county_name = $('.county-name', $info);
+    var $county_info = $('#county-info ul');
+    var $county_template = $("li:first",$county_info);
 		
     var GEOCoder = countyDataMap_GEOCoder();
     var GEOStyles = countyDataMap_GEOStyles();
     var stateBoxData = GEOCoder.getStateBoxData();
-    var countyData = GEOCoder.getCountyData();
+  var countyFields = GEOCoder.getCountyFields();
+  var countyData = GEOCoder.getCountyData();
 
 
     var curry = function (fn, _scope) {
@@ -78,11 +79,24 @@
       });
     };
 
+    var addValueHTML = function(props, field){
+      $template = $county_template.clone();
+      $template.addClass(field.name);
+      $template.addClass(field.class);
+      $(".demographic-data-label",$template).text(field.description);
+      $(".demographic-data-value",$template).text(props[field.name]);
+      $county_info.append($template);
+    };
 
     var updateInfo = function (props) {
       if(props)
       {
-        $county_name.html(props.county_name);
+        var idx = 0;
+        for(idx = 0; idx<countyFields.length; idx++ ){
+          addValueHTML(props, countyFields[idx]);
+        }
+      }else{
+        $county_info.html("");
       }
     };
 
