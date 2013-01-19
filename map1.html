@@ -11,26 +11,35 @@
 </head>
 
 <body>
-	<h1>MyMap1</h1>
-	<p>Hover over a county to view more info.</p>
+	<div id="main">
+		<h1>MyMap1</h1>
+		<p>Hover over a county to view more info.</p>
 
-	<div class="mapbox clearfix">
-		<div id="map"></div>
-		<div id="county-info">
-			<h2 class="county-name">County</h2>
-			<ul>
-			<li class="population">Total population</li>
-			<li class="food-ins-rate">Food insecurity rate</li>
-			<li class="food-ins-rate-child">Child food insecurity rate</li>
-			</ul>
-			<ul>
-			<li class="snap">SNAP participants</li>
-			<li class="snap-percentage">Percentage of population receiving SNAP</li>
-			<li class="wic">Number of WIC participants</li>
-			<li class="free-lunch">Number Free and Reduced-Price School Lunch recipients</li>
-			<li class="free-breakfast">Number of Free and Reduced-Price School Breakfast recipients</li>
-			<li class="food-banks">Number of State Food Purchase Program (Food Banks) participants</li>
-			</ul>
+		<div class="mapbox clearfix">
+			<div id="map"></div>
+			<div id="county-info">
+				<h2 class="county-name">County</h2>
+				<ul>
+					<li class="demographic-data population">
+						<span class="demographic-data-label">Total population</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="demographic-data food-ins-rate">
+						<span class="demographic-data-label">Food insecurity rate</span>
+						<span class="demographic-data-value">123</span>
+					</li>
+					<li class="food-ins-rate">Food insecurity rate</li>
+					<li class="food-ins-rate-child">Child food insecurity rate</li>
+				</ul>
+				<ul>
+					<li class="snap">SNAP participants</li>
+					<li class="snap-percentage">Percentage of population receiving SNAP</li>
+					<li class="wic">Number of WIC participants</li>
+					<li class="free-lunch">Number Free and Reduced-Price School Lunch recipients</li>
+					<li class="free-breakfast">Number of Free and Reduced-Price School Breakfast recipients</li>
+					<li class="food-banks">Number of State Food Purchase Program (Food Banks) participants</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	
