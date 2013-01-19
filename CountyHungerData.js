@@ -1,4 +1,21 @@
-var countyDataMap_Data =
+var countyDataMap_Data ={
+
+  "fields":
+  [
+    {"field name":"county_name","class":"demographic_data_header","description":""},
+    {"field name":"population","class":"demographic_data_primary","description":"Total population"},
+    {"field name":"food_ins_rate","class":"demographic_data_primary","description":"Food insecurity rate"},
+    {"field name":"food_ins_rate_child","class":"demographic_data_primary","description":"Child food insecurity rate"},
+    {"field name":"snap","class":"demographic_data_secondary","description":"SNAP participants"},
+    {"field name":"snap_percentage","class":"demographic_data_secondary","description":"Percentage of population receiving SNAP"},
+    {"field name":"wic","class":"demographic_data_secondary","description":"Number of WIC participants"},
+    {"field name":"free_lunch","class":"demographic_data_secondary","description":"Number Free and Reduced-Price School Lunch recipients"},
+    {"field name":"free_breakfast","class":"demographic_data_secondary","description":"Number of Free and Reduced-Price School Breakfast recipients"},
+    {"field name":"food_banks","class":"demographic_data_secondary","description":"Number of State Food Purchase Program (Food Banks) participants"}
+  ],
+
+
+  "data":
         [
     {"county_name":"Adams","population":12345,"food_ins_rate":47.7420508870732,"food_ins_rate_child":0.701025969915521,"snap":5027.84978878365,"snap_percentage":40.7278233194301,"wic":2577.08352390658,"free_lunch":4284.80817706491,"free_breakfast":862.841705760404,"food_banks":5752.81014648782},
     {"county_name":"Allegheny","population":23456,"food_ins_rate":36.5691339848734,"food_ins_rate_child":26.7051254075236,"snap":21393.2692846139,"snap_percentage":91.2059570455914,"wic":5606.13596372864,"free_lunch":1950.5860527708,"free_breakfast":2032.45333459005,"food_banks":1066.18014780939},
@@ -67,4 +84,5 @@ var countyDataMap_Data =
     {"county_name":"Westmoreland","population":10485968.3333333,"food_ins_rate":18.8054758057055,"food_ins_rate_child":11.7069907108658,"snap":582838.673135378,"snap_percentage":5.55827229882645,"wic":2542368.50752846,"free_lunch":1363394.12562387,"free_breakfast":419607.663503764,"food_banks":1109850.92829469},
     {"county_name":"Wyoming","population":10650417.3333333,"food_ins_rate":1.03343189745974,"food_ins_rate_child":4.85715425452323,"snap":9906078.16282015,"snap_percentage":93.0111736731336,"wic":2175854.83844611,"free_lunch":3515677.2429006,"free_breakfast":904386.432801317,"food_banks":2732675.83878384},
     {"county_name":"York","population":10814866.3333333,"food_ins_rate":29.5197491044946,"food_ins_rate_child":37.5321792780212,"snap":322426.90030361,"snap_percentage":2.98133042393538,"wic":3110459.95304833,"free_lunch":192248.51630527,"free_breakfast":1025009.39741062,"food_banks":689343.785812337}
-];
+]
+};

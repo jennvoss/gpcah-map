@@ -1,43 +1,49 @@
 var countyDataMap_GEOCoder = (function($){
   return function(){
 
-  var getStateBoxData = function(){
-    return {"type":"FeatureCollection","features":[
-      {"type":"Feature","id":"42","properties":{"name":"Pennsylvania"},"geometry":{"type":"Polygon","coordinates":[
-        [
-          [-80.518598, 42.269079],
-          [-80.518598, 39.722302],
-          [-74.69661, 39.722302],
-          [-74.69661, 42.269079]
-        ]
-      ]}}
-    ]};
-  }
-
-  var GEOData = countyDataMap_CountyGEOData;
-  var hungerData = countyDataMap_Data;
-
-  var getCountyData = function(){
-    var temp = [];
-    var idx = 0;
-    for(idx = 0; idx<hungerData.length; idx++){
-      temp[hungerData[idx].county_name] = hungerData[idx];
-      console.log(hungerData[idx].county_name);
+    var getStateBoxData = function(){
+      return {"type":"FeatureCollection","features":[
+        {"type":"Feature","id":"42","properties":{"name":"Pennsylvania"},"geometry":{"type":"Polygon","coordinates":[
+          [
+            [-80.518598, 42.269079],
+            [-80.518598, 39.722302],
+            [-74.69661, 39.722302],
+            [-74.69661, 42.269079]
+          ]
+        ]}}
+      ]};
     }
 
-    for(idx = 0; idx<GEOData.features.length; idx++){
-      var center = GEOData.features[idx].properties.center;
-      var name = GEOData.features[idx].properties.name;
-      GEOData.features[idx].properties = temp[name];
+      var GEOData = countyDataMap_CountyGEOData;
+      var hungerFields = countyDataMap_Data.fields;
+      var hungerData = countyDataMap_Data.data;
+
+      var getCountyFields = function(){
+        return hungerFields;
+      };
+
+      var getCountyData = function(){
+      var temp = [];
+      var idx = 0;
+      for(idx = 0; idx<hungerData.length; idx++){
+        temp[hungerData[idx].county_name] = hungerData[idx];
+        console.log(hungerData[idx].county_name);
+      }
+
+      for(idx = 0; idx<GEOData.features.length; idx++){
+        var center = GEOData.features[idx].properties.center;
+        var name = GEOData.features[idx].properties.name;
+        GEOData.features[idx].properties = temp[name];
+      }
+
+      return GEOData;
     }
 
-    return GEOData;
-  }
-
-return {
-  "getStateBoxData": getStateBoxData,
-  "getCountyData": getCountyData
-};
+    return {
+      "getStateBoxData": getStateBoxData,
+      "getCountyFields": getCountyFields,
+      "getCountyData": getCountyData
+    };
   };
 })(jQuery);
 
