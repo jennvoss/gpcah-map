@@ -1,24 +1,44 @@
-#map {
-  height : 400px;
-  width: 600px;
+body {
+	margin: 10px;
+	font-family: arial, helvetica, sans-serif;
+	background: #fff;
 }
-.mapbox {
-  position: absolute;
-  border: 1px solid #BBB;
-  border-radius: 5px;
-  padding: 5px;
+.clearfix {
+	zoom:1;
+}
+.clearfix:before,
+.clearfix:after {
+	display: block;
+	height: 0;
+	content: ".";
+	overflow: hidden;
+	visibility: hidden;
+}
+.clearfix:after {
+	clear: both;
 }
 
-#countyInfo {
-  z-index : 9999;
-  position: absolute;
-  width: 200px;
-  height: 50px;
-  top: 5px;
-  right: 5px;
-  border: 1px solid #BBB;
-  border-radius: 5px;
-  padding: 5px;
-  background: #FFF;
-  color: #F00;
+.mapbox {
+	border: 1px solid #BBB;
+	border-radius: 5px;
+	padding: 5px;
 }
+#map {
+	float: left;
+  	height: 400px;
+	margin-right: 1%;
+	width: 78%;
+	min-width: 600px;
+}
+#county-info {
+	padding: 1%;
+	width: 18%;
+	min-width: 150px;
+	height: 400px;
+	color: #F00;
+	float: left;
+	border: 1px solid #BBB;
+}
+	#county-info span {
+		display: block;
+	}
