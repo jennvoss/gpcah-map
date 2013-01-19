@@ -3,6 +3,7 @@ body {
 	font-family: arial, helvetica, sans-serif;
 	font-size: 75%;
 	background: #fff;
+	background: url(img/gpcah-site-bg.png) top center;
 }
 .clearfix {
 	zoom:1;
@@ -19,8 +20,11 @@ body {
 	clear: both;
 }
 
+#main {
+	margin: 200px auto 0;
+	width: 860px;
+}
 .mapbox {
-	width: 880px;
 	border: 1px solid #BBB;
 	border-radius: 5px;
 	padding: 5px;
