@@ -19,12 +19,27 @@ return function() {
   };
 
   var highlightCounty = {
+    fillOpacity: 0.7,
+    fillColor: '#FF00A0'
+  };
+
+  var resetCounty = {
+    fillOpacity: 0.7,
+    fillColor: '#FFEDA0'
+  };
+
+  var hoverCounty = {
         weight: 4,
         color: '#FFF',
-        dashArray: '',
-        fillOpacity: 1,
-        fillColor: '#FF00A0'
+        dashArray: ''
   };
+
+  var leaveCounty = {
+    weight: 1,
+    color: '#FFF',
+    dashArray: ''
+  };
+
 
   var colors =  ['#FFC77F', '#FDB96F', '#FCBA51', '#FAB247', '#F9913E', '#F78931', '#F67124', '#F46817', '#F64B06', '#F54002'];
 
@@ -47,6 +62,9 @@ return function() {
     "stateBox": stateBox,
     "county":county,
     "highlightCounty":highlightCounty,
+    "resetCounty":resetCounty,
+    "hoverCounty":hoverCounty,
+    "leaveCounty":leaveCounty,
     "coloredCounty": coloredCounty
   };
 };

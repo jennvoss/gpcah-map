@@ -12,6 +12,8 @@
     var countyFields = GEOCoder.getCountyFields();
     var countyData = GEOCoder.getCountyData();
 
+    var selectedCounty = false;
+
 
     var curry = function (fn, _scope) {
 
@@ -45,38 +47,46 @@
         return GEOStyles.stateBox;
     };
 
-    var highlightCounty = function (feature, layer) {
+    var mouseoverCounty = function (feature, layer) {
 
-      layer.setStyle(GEOStyles.highlightCounty);
+      layer.setStyle(GEOStyles.hoverCounty);
 
-//      if (!L.Browser.ie && !L.Browser.opera && typeof(layer.bringToFront) === 'function') {
-//        layer.bringToFront();
-//      }
-
-      //updateInfo(feature.properties);
     };
 
-    var resetCounty = function (feature, layer) {
+    var mouseoutCounty = function (feature, layer) {
 
-      layer.setStyle(GEOStyles.coloredCounty(getColorDefiningValue(feature)));
+      layer.setStyle(GEOStyles.leaveCounty);
 
-      //updateInfo();
     };
 
     var zoomToFeature = function (feature, layer) {
       map.fitBounds(layer.getBounds());
     };
 
-    var zoomToCounty = function (feature, county) {
-      updateInfo(feature.properties);
-//      zoomToFeature({},county.target);
-    };
+  var selectCounty = function (feature, layer) {
+    if(selectedCounty){
+      var oldFeature = selectedCounty.feature;
+      unselectCounty(oldFeature, selectedCounty.layer);
+      if(feature.name == oldFeature.name){
+        return;
+      }
+    }
+    selectedCounty = {"feature":feature, "layer":layer};
+    updateInfo(feature.properties);
+    layer.setStyle(GEOStyles.highlightCounty);
+  };
+
+  var unselectCounty = function (feature, layer) {
+    updateInfo();
+    layer.setStyle(GEOStyles.coloredCounty(getColorDefiningValue(feature)));
+    selectCounty = false;
+  };
 
     var onEachCounty = function (feature, layer) {
       layer.on({
-        mouseover: curry(highlightCounty,that,feature,layer),
-        mouseout: curry(resetCounty,that,feature,layer),
-        click: curry(zoomToCounty,that,feature,layer)
+        mouseover: curry(mouseoverCounty,that,feature,layer),
+        mouseout: curry(mouseoutCounty,that,feature,layer),
+        click: curry(selectCounty,that,feature,layer)
       });
     };
 

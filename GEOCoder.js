@@ -33,6 +33,7 @@ var countyDataMap_GEOCoder = (function($){
         var center = GEOData.features[idx].properties.center;
         var name = GEOData.features[idx].properties.name;
         GEOData.features[idx].properties = temp[name];
+        GEOData.features[idx].name = name;
       }
 
       return GEOData;
