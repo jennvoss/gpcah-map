@@ -33,7 +33,7 @@
     };
 
     var getColorDefiningValue = function(feature){
-      return feature.properties.density;
+      return feature.properties.food_ins_rate/100;
     };
 
     var style = function(feature) {
