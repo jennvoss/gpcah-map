@@ -27,7 +27,6 @@ var countyDataMap_GEOCoder = (function($){
       var idx = 0;
       for(idx = 0; idx<hungerData.length; idx++){
         temp[hungerData[idx].county_name] = hungerData[idx];
-        console.log(hungerData[idx].county_name);
       }
 
       for(idx = 0; idx<GEOData.features.length; idx++){
