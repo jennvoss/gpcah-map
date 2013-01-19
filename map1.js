@@ -53,29 +53,30 @@
 //        layer.bringToFront();
 //      }
 
-      updateInfo(feature.properties);
+      //updateInfo(feature.properties);
     };
 
     var resetCounty = function (feature, layer) {
 
       layer.setStyle(GEOStyles.coloredCounty(getColorDefiningValue(feature)));
 
-      updateInfo();
+      //updateInfo();
     };
 
     var zoomToFeature = function (feature, layer) {
       map.fitBounds(layer.getBounds());
     };
 
-    var zoomToCounty = function (county) {
-      zoomToFeature({},county.target);
+    var zoomToCounty = function (feature, county) {
+      updateInfo(feature.properties);
+//      zoomToFeature({},county.target);
     };
 
     var onEachCounty = function (feature, layer) {
       layer.on({
         mouseover: curry(highlightCounty,that,feature,layer),
         mouseout: curry(resetCounty,that,feature,layer),
-        click: zoomToCounty
+        click: curry(zoomToCounty,that,feature,layer)
       });
     };
 
@@ -91,6 +92,7 @@
     var updateInfo = function (props) {
       if(props)
       {
+        $county_info.html("");
         var idx = 0;
         for(idx = 0; idx<countyFields.length; idx++ ){
           addValueHTML(props, countyFields[idx]);
