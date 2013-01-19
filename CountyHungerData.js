@@ -2,16 +2,16 @@ var countyDataMap_Data ={
 
   "fields":
   [
-    {"field name":"county_name","class":"demographic_data_header","description":""},
-    {"field name":"population","class":"demographic_data_primary","description":"Total population"},
-    {"field name":"food_ins_rate","class":"demographic_data_primary","description":"Food insecurity rate"},
-    {"field name":"food_ins_rate_child","class":"demographic_data_primary","description":"Child food insecurity rate"},
-    {"field name":"snap","class":"demographic_data_secondary","description":"SNAP participants"},
-    {"field name":"snap_percentage","class":"demographic_data_secondary","description":"Percentage of population receiving SNAP"},
-    {"field name":"wic","class":"demographic_data_secondary","description":"Number of WIC participants"},
-    {"field name":"free_lunch","class":"demographic_data_secondary","description":"Number Free and Reduced-Price School Lunch recipients"},
-    {"field name":"free_breakfast","class":"demographic_data_secondary","description":"Number of Free and Reduced-Price School Breakfast recipients"},
-    {"field name":"food_banks","class":"demographic_data_secondary","description":"Number of State Food Purchase Program (Food Banks) participants"}
+    {"name":"county_name","class":"header","description":"County"},
+    {"name":"population","class":"primary","description":"Total population"},
+    {"name":"food_ins_rate","class":"primary","description":"Food insecurity rate"},
+    {"name":"food_ins_rate_child","class":"primary","description":"Child food insecurity rate"},
+    {"name":"snap","class":"secondary","description":"SNAP participants"},
+    {"name":"snap_percentage","class":"secondary","description":"Percentage of population receiving SNAP"},
+    {"name":"wic","class":"secondary","description":"Number of WIC participants"},
+    {"name":"free_lunch","class":"secondary","description":"Number Free and Reduced-Price School Lunch recipients"},
+    {"name":"free_breakfast","class":"secondary","description":"Number of Free and Reduced-Price School Breakfast recipients"},
+    {"name":"food_banks","class":"secondary","description":"Number of State Food Purchase Program (Food Banks) participants"}
   ],
 
 
