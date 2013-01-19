@@ -1,0 +1,24 @@
+#map {
+  height : 400px;
+  width: 600px;
+}
+.mapbox {
+  position: absolute;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#countyInfo {
+  z-index : 9999;
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  top: 5px;
+  right: 5px;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  padding: 5px;
+  background: #FFF;
+  color: #F00;
+}
