@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Philly Give Camp | Coalition Against Hunger::Choropleth Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Leaflet JS Stuff -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
+    <![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      .btn-custom {
+        background-color: hsl(28, 93%, 35%) !important;
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f67a0d", endColorstr="#ac5306");
+        background-image: -khtml-gradient(linear, left top, left bottom, from(#f67a0d), to(#ac5306));
+        background-image: -moz-linear-gradient(top, #f67a0d, #ac5306);
+        background-image: -ms-linear-gradient(top, #f67a0d, #ac5306);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f67a0d), color-stop(100%, #ac5306));
+        background-image: -webkit-linear-gradient(top, #f67a0d, #ac5306);
+        background-image: -o-linear-gradient(top, #f67a0d, #ac5306);
+        background-image: linear-gradient(#f67a0d, #ac5306);
+        border-color: #ac5306 #ac5306 hsl(28, 93%, 31%);
+        color: #fff !important;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.26);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+      .hero-unit {
+        background: url("img/colorpleth_bg.png") no-repeat center;
+      }
+
+      /* // Probably a bad style choice...
+      .navbar-inverse .brand, .navbar-inverse .nav > li > a:hover {
+        color: rgba(237, 160, 79, 1.000);
+      }
+
+      .navbar-inverse .brand:hover {
+        color: rgba(232, 117, 17, 1.000);
+      }
+
+      .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+        color: rgba(232, 117, 17, 1.000);
+      } */
+
+      /* Styles for the Choropleth Map */
+      #giveCamp_map { height: 180px; }
+
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Coalition Against Hunger: Choropleth Map</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contributing Developers <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><b class="icon-briefcase"></b> Steve Sample</a></li>
+                  <li><a href="#"><b class="icon-qrcode"></b> Sebastian Meine</a></li>
+                  <li><a href="#"><b class="icon-eye-open"></b> Jeremy Iglehart</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Non-Profit Representative(s)</li>
+                  <li><a href="#"><b class="icon-gift"></b> Ronna Bolante</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Interactive Choropleth Map</h1>
+        <h2>Define: Choropleth Map</h2>
+        <div class="row-fluid">
+          <div class="span7">
+            <p>a <strong>thematic map in which areas are <em>shaded</em></strong> <span class="muted"><em>(or patterned)</em></span> in proportion to the measurement of the statistical variable being displayed on the map, such as population density or per-capita income.</p>
+
+            <p>The choropleth map provides an <strong><em>easy way to visualize</em></strong> how a measurement varies across a geographic area or it shows the level of variability within a region.</p>
+          </div>
+        </div>
+        <p style="margin-top: 3em;"><a class="btn btn-custom btn-large" href="http://leafletjs.com/examples/choropleth.html">Learn how to make one yourself &raquo; leafletjs.com</a></p>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <h2>Another Map</h2>
+
+        <h4 class="muted">(Not yet complete... next step generate test geoJSON data for one county, and overlay it.)</h4>
+
+        <div id="choropleth_map_1" style="height: 458px"></div>
+
+        <script>
+          var choropleth_map_1 = L.map('choropleth_map_1').setView([41.20370, -77.19402], 7);
+
+          L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+              key: "c5007019bb4e4787afb0135c36690912",
+              attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>',
+              styleId: 22677
+          }).addTo(choropleth_map_1);
+        </script>
+      </div>
+
+      <hr />
+
+      <!-- Technical specifications row -->
+      <div class="row">
+        <h2>Technical Specs</h2>
+        <div class="span4">
+          <h3>Data fields:</h3>
+          <p>These will be displayed in a window on the top right-hand corner of the map</p>
+          <h4>Hunger in {{County-Name}}</h4>
+          <ol>
+            <li>Total population</li>
+            <li>Food insecurity rate</li>
+            <li>Child food insecurity rate</li>
+          </ol>
+          <h4>How Nutrition Programs Help:</h4>
+          <p>In this county, here are the number of residents who participate in:</p>
+          <ol>
+            <li>SNAP (Supplemental Nutrition Assistance Program:</li>
+            <ul><li>Percentage of population receiving SNAP</li></ul>
+            <li>WIC (Women, Infants and Children) Program:</li>
+            <ul>
+              <li>Free and Reduced-Price School Lunch</li>
+              <li>Free and Reduced-Price School Breakfast</li>
+            </ul>
+            <li>State Food Purchase Program (Food Banks)</li>
+          </ol>
+        </div>
+        <div class="span4">
+          <h3>Branding:</h3>
+
+          <h4>Colours:</h4>
+          <p style="
+          background-color: rgb(237, 160, 79);
+          padding: 10px;">
+            PMS 157 (Print): rgb(237, 160, 79)
+          </p>
+
+          <hr />
+
+          <p style="
+          background-color: rgb(232, 117, 17);
+          padding: 10px;">
+            PMG 158 (Onscreen): rgb(232, 117, 17)
+          </p>
+
+          <hr />
+
+          <h4>Font(s)</h4>
+          <p style="
+          font-family: Gill Sans / Gill Sans MT, sans-serif;
+          font-size: 40px;
+          font-weight: 700;
+          font-style: italic;">
+            Gill Sans
+          </p>
+          <p><b class="icon-exclamation-sign"></b> Gills Sans is NOT websafe :(...</p>
+
+          <hr />
+
+          <h4>Map Colours</h4>
+          <p>Aparently there has already been a study performed on which colors you should use on a Choropleth map.  These schemes have already undergone extensive user phycological testing.  Lucky for us the color we would want to use REGARDLESS actually matches the company brand colors almost EXACTLY - lucky us: <a href="http://colorbrewer2.org/">colorbrewer2.org</a></p>
+
+       </div>
+        <div class="span4">
+          <h3>Project Resources:</h3>
+          <ol>
+            <li><a href="http://leafletjs.com/examples/choropleth.html">Leaflet JS: choropleth tutorial</a><p>(truely the best resource for this project - period)</p></li>
+            <li><a href="http://philanthropy.com/article/Interactive-How-America-Gives/133709/">Philanthropy.com's awesome choropleth</a><p>(from which we found leaflet)</p></li>
+            <li><a href="http://www.texastribune.org/library/data/us-senate-runoff-results-map/">Texas Tribune US Senate Runoff Results map</a><p>(perhaps the BEST model to go from)</p></li>
+            <li><a href="http://bl.ocks.org/4060606">Mike Bostock's <em>awesome</em> choropleth example</a><p>(when we all grow up and can be real designers, we might make something that is somewhat this cool)</li>
+          </ol>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Design request row -->
+      <div class="row">
+        <h2>Design Request</h2>
+        <div class="span4">
+          <h3>Goal:</h3>
+          <p> In February/March 2013, the Coalition will release its first-ever “Hunger in Pennsylvania” report, publishing the most comprehensive data and analysis available on hunger and poverty for each of the state’s 67 counties. In addition to producing a hardcopy report that would be downloadable online, the Coalition would like to create an interactive hunger map of Pennsylvania’s counties—a tool that would undoubtedly raise awareness and increase engagement in the issue of hunger among members of the public, media and government.</p>
+        </div>
+        <div class="span4">
+          <h3>Key Message:</h3>
+          <p>Hunger exists in every community in Pennsylvania, and there are many programs that can help, if we ensure that all people have access to them.</p>
+       </div>
+        <div class="span4">
+          <h3>Primary Audience:</h3>
+          <p>This online interactive map is intended for a combination of Pennsylvania audiences—the media, anti-hunger organizations, social service agencies, educators, policymakers, as well as members of the general public.</p>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row-fluid">
+        <h2>Failed Examples</h2>
+
+        <!-- Le giveCamp map -->
+        <div class="span6">
+          <h3>The Philly Give Camp 3 Map</h2>
+          <div id="giveCamp_map"></div>
+        </div>
+
+        <script>
+        var giveCamp_map = L.map('giveCamp_map').setView([40.056219, -75.522104], 18);
+
+        L.tileLayer('http://{s}.tile.cloudmade.com/c5007019bb4e4787afb0135c36690912/997/256/{z}/{x}/{y}.png', {
+          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>',
+          maxZoom: 18
+        }).addTo(giveCamp_map);
+
+        var phillyGiveCamp = L.marker([40.056219, -75.522104]).addTo(giveCamp_map);
+        phillyGiveCamp.bindPopup("Philly Give Camp 3!!!!");
+
+        var parkingSpot = L.marker([40.056440, -75.521723]).addTo(giveCamp_map);
+        parkingSpot.bindPopup("This is the best parking Spot in the WHOLE parkinglot!");
+
+        var popup = L.popup()
+          .setLatLng([40.056067, -75.521468])
+          .setContent("Welcome to Philly Give Camp 3")
+          .openOn(giveCamp_map);
+
+        var popup2 = L.popup();
+
+        function onMapClick(e) {
+          popup2
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map near the Philly Give Camp the 3rd at " + e.latlng.toString())
+            .openOn(giveCamp_map);
+        }
+
+        giveCamp_map.on('click', onMapClick);
+        </script>
+
+        <div class="span5">
+          <h3>Another Map</h3>
+          <div id="map2" style="height: 400px"></div>
+        </div>
+
+        <script>
+
+          var freeBus = {
+              "type": "FeatureCollection",
+              "features": [{
+                  "type": "Feature",
+                  "geometry": {
+                      "type": "LineString",
+                      "coordinates": [
+                          [-105.00341892242432, 39.75383843460583],
+                          [-105.0008225440979, 39.751891803969535]
+                      ]
+                  },
+                  "properties": {
+                      "popupContent": "This is free bus that will take you across downtown.",
+                      "underConstruction": false
+                  },
+                  "id": 1
+              }, {
+                  "type": "Feature",
+                  "geometry": {
+                      "type": "LineString",
+                      "coordinates": [
+                          [-105.0008225440979, 39.751891803969535],
+                          [-104.99820470809937, 39.74979664004068]
+                      ]
+                  },
+                  "properties": {
+                      "popupContent": "This is free bus that will take you across downtown.",
+                      "underConstruction": true
+                  },
+                  "id": 2
+              }, {
+                  "type": "Feature",
+                  "geometry": {
+                      "type": "LineString",
+                      "coordinates": [
+                          [-104.99820470809937, 39.74979664004068],
+                          [-104.98689651489258, 39.741052354709055]
+                      ]
+                  },
+                  "properties": {
+                      "popupContent": "This is free bus that will take you across downtown.",
+                      "underConstruction": false
+                  },
+                  "id": 3
+              }]
+          };
+
+          var lightRailStop = {
+              "type": "FeatureCollection",
+              "features": [{
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "18th & California Light Rail Stop"
+                  },
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.98999178409576, 39.74683938093904]
+                  }
+              }, {
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "20th & Welton Light Rail Stop"
+                  },
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.98689115047453, 39.747924136466565]
+                  }
+              }]
+          };
+
+          var bicycleRental = {
+              "type": "FeatureCollection",
+              "features": [{
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9998241,
+                      39.7471494]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 51
+              }, {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9983545,
+                      39.7502833]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 52
+              }, {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9963919,
+                      39.7444271]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 54
+              }, {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9960754,
+                      39.7498956]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 55
+              }, {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9933717,
+                      39.7477264]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 57
+              }, {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9913392,
+                      39.7432392]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 58
+              }, {
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [-104.9788452,
+                      39.6933755]
+                  },
+                  "type": "Feature",
+                  "properties": {
+                      "popupContent": "This is a B-Cycle Station. Come pick up a bike and pay by the hour. What a deal!"
+                  },
+                  "id": 74
+              }]
+          };
+
+          var campus = {
+              "type": "Feature",
+              "properties": {
+                  "popupContent": "This is the Auraria West Campus",
+                  "style": {
+                      weight: 2,
+                      color: "#999",
+                      opacity: 1,
+                      fillColor: "#B0DE5C",
+                      fillOpacity: 0.8
+                  }
+              },
+              "geometry": {
+                  "type": "MultiPolygon",
+                  "coordinates": [
+                      [
+                          [
+                              [-105.00432014465332, 39.74732195489861],
+                              [-105.00715255737305, 39.74620006835170],
+                              [-105.00921249389647, 39.74468219277038],
+                              [-105.01067161560059, 39.74362625960105],
+                              [-105.01195907592773, 39.74290029616054],
+                              [-105.00989913940431, 39.74078835902781],
+                              [-105.00758171081543, 39.74059036160317],
+                              [-105.00346183776855, 39.74059036160317],
+                              [-105.00097274780272, 39.74059036160317],
+                              [-105.00062942504881, 39.74072235994946],
+                              [-105.00020027160645, 39.74191033368865],
+                              [-105.00071525573731, 39.74276830198601],
+                              [-105.00097274780272, 39.74369225589818],
+                              [-105.00097274780272, 39.74461619742136],
+                              [-105.00123023986816, 39.74534214278395],
+                              [-105.00183105468751, 39.74613407445653],
+                              [-105.00432014465332, 39.74732195489861]
+                          ],
+                          [
+                              [-105.00361204147337, 39.74354376414072],
+                              [-105.00301122665405, 39.74278480127163],
+                              [-105.00221729278564, 39.74316428375108],
+                              [-105.00283956527711, 39.74390674342741],
+                              [-105.00361204147337, 39.74354376414072]
+                          ]
+                      ],
+                      [
+                          [
+                              [-105.00942707061768, 39.73989736613708],
+                              [-105.00942707061768, 39.73910536278566],
+                              [-105.00685214996338, 39.73923736397631],
+                              [-105.00384807586671, 39.73910536278566],
+                              [-105.00174522399902, 39.73903936209552],
+                              [-105.00041484832764, 39.73910536278566],
+                              [-105.00041484832764, 39.73979836621592],
+                              [-105.00535011291504, 39.73986436617916],
+                              [-105.00942707061768, 39.73989736613708]
+                          ]
+                      ]
+                  ]
+              }
+          };
+
+          var coorsField = {
+              "type": "Feature",
+              "properties": {
+                  "popupContent": "Coors Field"
+              },
+              "geometry": {
+                  "type": "Point",
+                  "coordinates": [-104.99404191970824, 39.756213909328125]
+              }
+          }; 
+          var map2 = L.map('map2').setView([39.74739, -105], 13);
+
+          L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2012 CloudMade',
+            key: 'BC9A493B41014CAABB98F0471D759707'
+          }).addTo(map2);
+
+          var baseballIcon = L.icon({
+            iconUrl: 'baseball-marker.png',
+            iconSize: [32, 37],
+            iconAnchor: [16, 37],
+            popupAnchor: [0, -28]
+          });
+
+          function onEachFeature(feature, layer) {
+            var popupContent = "I am AWESOME!!! ";
+
+            if (feature.properties && feature.properties.popupContent) {
+              popupContent += feature.properties.popupContent;
+            }
+
+            layer.bindPopup(popupContent);
+          }
+
+          L.geoJson([bicycleRental, campus], {
+
+            style: function (feature) {
+              return feature.properties && feature.properties.style;
+            },
+
+            onEachFeature: onEachFeature,
+
+            pointToLayer: function (feature, latlng) {
+              return L.circleMarker(latlng, {
+                radius: 8,
+                fillColor: "#ff7800",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+              });
+            }
+          }).addTo(map2);
+
+          L.geoJson(freeBus, {
+
+            filter: function (feature, layer) {
+              if (feature.properties) {
+                // If the property "underConstruction" exists and is true, return false (don't render features under construction)
+                return feature.properties.underConstruction !== undefined ? !feature.properties.underConstruction : true;
+              }
+              return false;
+            },
+
+            onEachFeature: onEachFeature
+          }).addTo(map2);
+
+          var coorsLayer = L.geoJson(coorsField, {
+
+            pointToLayer: function (feature, latlng) {
+              return L.marker(latlng, {icon: baseballIcon});
+            },
+
+            onEachFeature: onEachFeature
+          }).addTo(map2);
+
+        </script>
+      </div>
+
+
+      <hr />
+
+      <footer>
+        <p>&copy; GPCAH 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
