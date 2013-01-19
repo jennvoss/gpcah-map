@@ -9,8 +9,8 @@
     var GEOCoder = countyDataMap_GEOCoder();
     var GEOStyles = countyDataMap_GEOStyles();
     var stateBoxData = GEOCoder.getStateBoxData();
-  var countyFields = GEOCoder.getCountyFields();
-  var countyData = GEOCoder.getCountyData();
+    var countyFields = GEOCoder.getCountyFields();
+    var countyData = GEOCoder.getCountyData();
 
 
     var curry = function (fn, _scope) {
