@@ -21,9 +21,15 @@ var countyDataMap_GEOCoder = (function($){
     var temp = [];
     var idx = 0;
     for(idx = 0; idx<hungerData.length-1; idx++){
-      temp[hungerData[idx]["county-name"]] = hungerData[idx];
+      temp[hungerData[idx].county_name] = hungerData[idx];
     }
-    
+
+    for(idx = 0; idx<GEOData.features.length-1; idx++){
+      var center = GEOData.features[idx].properties.center;
+      var name = GEOData.features[idx].properties.name;
+      GEOData.features[idx].properties = temp[name];
+    }
+
     return GEOData;
   }
 
