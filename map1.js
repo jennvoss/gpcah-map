@@ -5,7 +5,7 @@
                       ' Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>'+
                       '<br />Implementation and &copy; <a href="http://sqlity.net">sqlity.net</a>,&nbsp;&nbsp;'+
                       '<a href="http://www.jennifervoss.com/">Jennifer Voss</a>,&nbsp;&nbsp;'+
-                      '<a href="http://media-phi.com/" alt="Implimented in part by &Phi;">&Phi;</a>';
+                      '<a href="http://media-phi.com/" alt="Implimented in part by &Phi;" title="Media-&Phi;">&Phi;</a>';
     var map;
     var geojson;
     var $county_info = $('#county-info ul');
