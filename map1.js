@@ -84,10 +84,12 @@
   var selectCounty = function (feature, layer) {
     if(selectedCounty){
       var oldFeature = selectedCounty.feature;
-      unselectCounty(oldFeature, selectedCounty.layer);
+      var oldLayer = selectedCounty.layer;
+      selectedCounty = false;
       if(feature.name == oldFeature.name){
         return;
       }
+      lowlightCounty(oldFeature, oldLayer);
     }
     selectedCounty = {"feature":feature, "layer":layer};
     highlightCounty(feature, layer);
