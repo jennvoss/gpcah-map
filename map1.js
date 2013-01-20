@@ -152,8 +152,9 @@
       $county_info.append($template);
     };
 
-    var addKeyTextHTML = function(label, text){
+    var addKeyTextHTML = function(label, text, class){
       var $template = $key_template.clone();
+      $template.addClass(class);
       $template.children(".demographic-key-label").text(label);
       $template.children(".demographic-key-value").text(text);
       $county_info.append($template);
@@ -171,12 +172,12 @@
 
     var updateInfo_key = function(){
       $county_info.html("");
-      addKeyTextHTML("Legend",getColorKeyDescription())
+      addKeyTextHTML("Legend",getColorKeyDescription(),'header')
       var idx = 0;
       for(idx = 0; idx<GEOStyles.colors.length; idx++ ){
         addKeyHTML(GEOStyles.colors[idx],GEOStyles.colorKey[idx]);
       }
-      addKeyTextHTML("","Hover over a county for more information.")
+      addKeyTextHTML("","Hover over a county for more information.","footer");
     };
 
     var updateInfo = function (props) {
