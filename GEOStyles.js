@@ -23,19 +23,9 @@ return function() {
     fillColor: '#FF00A0'
   };
 
-  var unselectCounty = {
-    fillOpacity: 0.7,
-    fillColor: '#FFEDA0'
-  };
-
   var highlightCounty = {
     fillOpacity: 0.7,
     fillColor: '#FF00A0'
-  };
-
-  var resetCounty = {
-    fillOpacity: 0.7,
-    fillColor: '#FFEDA0'
   };
 
   var hoverCounty = {
@@ -73,8 +63,6 @@ return function() {
     "county":county,
     "highlightCounty":highlightCounty,
     "selectCounty":selectCounty,
-    "unselectCounty":unselectCounty,
-    "resetCounty":resetCounty,
     "hoverCounty":hoverCounty,
     "leaveCounty":leaveCounty,
     "coloredCounty": coloredCounty
