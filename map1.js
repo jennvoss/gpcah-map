@@ -1,6 +1,11 @@
 
 (function($, L){
     var that = this;
+    var attribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,'+
+                      ' Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>'+
+                      '<br />Implementation and &copy; <a href="http://sqlity.net">sqlity.net</a>,&nbsp;&nbsp;'+
+                      '<a href="http://www.jennifervoss.com/">Jennifer Voss</a>,&nbsp;&nbsp;'+
+                      '<a href="http://media-phi.com/" alt="Implimented in part by &Phi;">&Phi;</a>';
     var map;
     var geojson;
     var $county_info = $('#county-info ul');
@@ -155,7 +160,7 @@
       map = L.map('map').setView([0, 0],0);//setView([41, -77.5], 7);
       L.tileLayer('http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png', {
         apiKey: '8fb64cb6c89b4d9893ae71d18bd9a496',
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a><br />Implementation &copy; <a href="http://sqlity.net">sqlity.net</a> ',
+        attribution: attribution,
         maxZoom: 7,
         minZoom: 7,
         styleId: 22677
