@@ -29,11 +29,13 @@ body {
 	border-radius: 5px;
 	padding: 5px;
 }
+
 #map {
 	float: left;
   	height: 400px;
 	width: 625px;
 }
+
 #county-info {
 	padding: 10px;
 	width: 200px;
@@ -42,38 +44,40 @@ body {
 	border-left: 1px solid #bbb;
 	background-color: #ebebeb;
 }
-	#county-info ul {
-		margin: 0 0 10px;
-		padding: 0;
-	}
+
+#county-info ul {
+    margin: 0 0 10px;
+    padding: 0;
+}
 	
 .demographic-data {	
 	display: block;
 	margin: 0;
 	padding: 0 0 5px 0;
 }
-	span {
-		display: block;
-	}
-	.demographic-data-label {
-		font-size: 0.917em;
-		font-weight: bold;
-	}
-	.demographic-data-value {
-		margin-left: 10px;
-	}
-	
-	.county_name .demographic-data-label {
-		position: absolute;
-		left: -9999px;
-	}
-	.county_name .demographic-data-value {
-		margin: 0;
-		font-size: 1.75em;
-		font-weight: bold;
-	}
-	.food-ins-rate-child span {
-		padding-bottom: 10px;
-		margin-bottom: 10px;
-		border-bottom: 1px dotted #ccc;
-	}
+
+span {
+    display: block;
+}
+.demographic-data-label {
+    font-size: 0.917em;
+    font-weight: bold;
+}
+.demographic-data-value {
+    margin-left: 10px;
+}
+
+.county_name .demographic-data-label {
+    position: absolute;
+    left: -9999px;
+}
+.county_name .demographic-data-value {
+    margin: 0;
+    font-size: 1.75em;
+    font-weight: bold;
+}
+.food-ins-rate-child span {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+}
