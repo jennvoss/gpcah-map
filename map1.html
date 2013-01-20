@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <link rel="stylesheet" href="leaflet.css" />
+  <!--[if lte IE 8]>
+     <link rel="stylesheet" href="leaflet.ie.css" />
+  <![endif]-->
+  <link rel="stylesheet" href="maps1.css" />
+  <style type="text/css">
+  #main h1.header{
+    margin: 10px 0;
+  }
+  #main p.subheader{
+    margin: 5px 0;
+  }
+
+  </style>
+</head>
+<body>
+<div id="main">
+    <div class="mapbox clearfix">
+        <div id="map"></div>
+        <div id="county-info">
+            <ul>
+              <li class="demographic-data">
+                  <span class="demographic-data-label"></span>
+                  <span class="demographic-data-value"></span>
+              </li>
+              <li class="demographic-key">
+                  <span class="demographic-key-label"></span>
+                  <span class="demographic-key-value"></span>
+              </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="leaflet.js"></script>
+<script src="http://www.hungercoalition.org/misc/jquery.js?0"></script>
+<script src="GEOCoder.js"></script>
+<script src="GEOStyles.js"></script>
+<script src="CountyGEOData.js"></script>
+<script src="CountyHungerData.js"></script>
+<script src="map1.js"></script>
+
+</body>
+</html>
