@@ -20,12 +20,12 @@ return function() {
 
   var selectCounty = {
     fillOpacity: 1,
-    fillColor: '#215D80'
+    fillColor: '#A8CC4C'
   };
 
   var highlightCounty = {
     fillOpacity: 0.8,
-    fillColor: '#215D80'
+    fillColor: '#A8CC4C'
   };
 
   var hoverCounty = {

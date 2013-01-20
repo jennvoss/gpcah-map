@@ -4,7 +4,7 @@ var countyDataMap_Data ={
 
   "fields":
   [
-    {"name":"county_name","class":"header","description":"County"},
+    {"name":"county_name","class":"header","description":"Hunger In"},
     {"name":"population","class":"primary","description":"Total population"},
     {"name":"food_ins_rate","class":"primary","description":"Food insecurity rate"},
     {"name":"food_ins_rate_child","class":"primary","description":"Child food insecurity rate"},
