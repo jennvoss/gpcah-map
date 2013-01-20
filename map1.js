@@ -140,6 +140,15 @@
       }
     };
 
+    var setMapBehavior = function(map){
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.doubleClickZoom.disable();
+      map.boxZoom.disable();
+      map.keyboard.disable();
+    };
+
     var initMap = function() {
       updateInfo();
 
@@ -147,7 +156,8 @@
       L.tileLayer('http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png', {
         apiKey: '8fb64cb6c89b4d9893ae71d18bd9a496',
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a><br />Implementation &copy; <a href="http://sqlity.net">sqlity.net</a> ',
-        maxZoom: 18,
+        maxZoom: 7,
+        minZoom: 7,
         styleId: 22677
       }).addTo(map);
 
@@ -155,6 +165,8 @@
         style: stateBoxStyle,
         onEachFeature: zoomToFeature
       }).addTo(map);
+
+      setMapBehavior(map);
 
       geojson = L.geoJson(countyData, {
         style: style,
