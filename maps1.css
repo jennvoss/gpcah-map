@@ -3,7 +3,7 @@ body {
 	font-family: arial, helvetica, sans-serif;
 	font-size: 75%;
 	background: #fff;
-	background: url(img/gpcah-site-bg.png) top center;
+	background: url(img/gpcah-site-bg.png) top center no-repeat;
 }
 .clearfix {
 	zoom:1;
@@ -21,7 +21,7 @@ body {
 }
 
 #main {
-	margin: 220px auto 0;
+	margin: 210px auto 0;
 	width: 860px;
 }
 .mapbox {
@@ -32,33 +32,34 @@ body {
 
 #map {
 	float: left;
-  	height: 400px;
+  	height: 450px;
 	width: 625px;
 }
 
 #county-info {
-	padding: 10px;
 	width: 200px;
-	height: 380px;
+	min-height: 430px;
 	float: left;
 	border-left: 1px solid #bbb;
-	background-color: #ebebeb;
+	background-color: #A8CC4C;
+	padding: 10px;
+	background-image: url(img/fork-icon.png);
+	background-position: 104% 7px;
+	background-repeat: no-repeat;
 }
-
-#county-info ul {
-    margin: 0 0 10px;
-    padding: 0;
-}
-#county-info span {
-    display: block;
-}
+	#county-info ul {
+	    margin: 0;
+	    padding: 0;
+	}
+	#county-info span {
+	    display: block;
+	}
 	
 .demographic-data {	
 	display: block;
 	margin: 0;
 	padding: 0 0 5px 0;
 }
-
 .demographic-data-label {
     font-size: 0.917em;
     font-weight: bold;
@@ -66,23 +67,38 @@ body {
 .demographic-data-value {
     padding-left: 10px;
 }
+.county_name {}
+	.county_name .demographic-data-label,
+	.county_name .demographic-data-value {
+	    padding: 0;
+	    font-size: 1.75em;
+	    font-weight: bold;
+	}
+	.county_name .demographic-data-label {
+		float: left;
+		margin-right: 4px;
+	}
 
-.county_name .demographic-data-label {
-	float: left;
-	margin-right: 4px;
+.secondary,
+.secondary_header {
+	padding-left: 8px;
+	padding-right: 8px;
+	background: rgba(0,0,0, 0.2);
+	border-left: 1px solid #748c35;
+	border-right: 1px solid #748c35;
 }
-.county_name .demographic-data-label,
-.county_name .demographic-data-value {
-    padding: 0;
-    font-size: 1.75em;
-    font-weight: bold;
+.secondary_header {
+	padding-top: 8px;
+	border-top: 1px solid #748c35;
 }
-.food_ins_rate_child .demographic-data-value {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px dotted #ccc;
+	.secondary_header .demographic-data-label {
+		font-weight: bold;
+		font-size: 1.25em;
+	}
+.food_banks {
+	padding-bottom: 8px;
+	border-bottom: 1px solid #748c35;
 }
-
 /* leaflet overrides */
 .leaflet-top {
 	display: none;
