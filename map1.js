@@ -152,9 +152,9 @@
       $county_info.append($template);
     };
 
-    var addKeyTextHTML = function(label, text, class){
+    var addKeyTextHTML = function(label, text, className){
       var $template = $key_template.clone();
-      $template.addClass(class);
+      $template.addClass(className);
       $template.children(".demographic-key-label").text(label);
       $template.children(".demographic-key-value").text(text);
       $county_info.append($template);
