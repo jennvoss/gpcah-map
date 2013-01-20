@@ -81,3 +81,8 @@ span {
     margin-bottom: 10px;
     border-bottom: 1px dotted #ccc;
 }
+
+/* leaflet overrides */
+.leaflet-top {
+	display: none;
+}
