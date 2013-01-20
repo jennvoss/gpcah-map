@@ -52,7 +52,7 @@
       layer.setStyle(GEOStyles.hoverCounty);
 
       if(!selectedCounty){
-        highlightCounty(feature, layer);
+        hoverHighlightCounty(feature, layer);
       }
 
     };
@@ -62,7 +62,7 @@
       layer.setStyle(GEOStyles.leaveCounty);
 
       if(!selectedCounty){
-        lowlightCounty(feature, layer);
+        hoverLowlightCounty(feature, layer);
       }
 
     };
@@ -71,9 +71,19 @@
       map.fitBounds(layer.getBounds());
     };
 
-  var highlightCounty = function(feature, layer){
+  var hoverHighlightCounty = function(feature, layer){
     updateInfo(feature.properties);
     layer.setStyle(GEOStyles.highlightCounty);
+  }
+
+  var hoverLowlightCounty = function(feature, layer){
+    updateInfo();
+    layer.setStyle(GEOStyles.coloredCounty(getColorDefiningValue(feature)));
+  }
+
+  var highlightCounty = function(feature, layer){
+    updateInfo(feature.properties);
+    layer.setStyle(GEOStyles.selectCounty);
   }
 
   var lowlightCounty = function(feature, layer){
@@ -85,11 +95,11 @@
     if(selectedCounty){
       var oldFeature = selectedCounty.feature;
       var oldLayer = selectedCounty.layer;
-      selectedCounty = false;
+      unselectCounty(oldFeature, oldLayer);
       if(feature.name == oldFeature.name){
+        hoverHighlightCounty(feature,layer);
         return;
       }
-      lowlightCounty(oldFeature, oldLayer);
     }
     selectedCounty = {"feature":feature, "layer":layer};
     highlightCounty(feature, layer);
