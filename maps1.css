@@ -21,7 +21,7 @@ body {
 }
 
 #main {
-	margin: 200px auto 0;
+	margin: 220px auto 0;
 	width: 860px;
 }
 .mapbox {
@@ -49,6 +49,9 @@ body {
     margin: 0 0 10px;
     padding: 0;
 }
+#county-info span {
+    display: block;
+}
 	
 .demographic-data {	
 	display: block;
@@ -56,27 +59,25 @@ body {
 	padding: 0 0 5px 0;
 }
 
-span {
-    display: block;
-}
 .demographic-data-label {
     font-size: 0.917em;
     font-weight: bold;
 }
 .demographic-data-value {
-    margin-left: 10px;
+    padding-left: 10px;
 }
 
 .county_name .demographic-data-label {
-    position: absolute;
-    left: -9999px;
+	float: left;
+	margin-right: 4px;
 }
+.county_name .demographic-data-label,
 .county_name .demographic-data-value {
-    margin: 0;
+    padding: 0;
     font-size: 1.75em;
     font-weight: bold;
 }
-.food-ins-rate-child span {
+.food_ins_rate_child .demographic-data-value {
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px dotted #ccc;
