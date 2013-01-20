@@ -25,6 +25,10 @@ body {
   background: url("../img/colorpleth_bg.png") no-repeat center;
 }
 
+#main {
+  margin: 0 auto;
+}
+
 #giveCamp_map { height: 400px; }
 
 .colours-pms-157, .colours-pms-158 {
