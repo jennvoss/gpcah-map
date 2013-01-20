@@ -8,6 +8,7 @@ var countyDataMap_Data ={
     {"name":"population","class":"primary","description":"Total population"},
     {"name":"food_ins_rate","class":"primary","description":"Food insecurity rate"},
     {"name":"food_ins_rate_child","class":"primary","description":"Child food insecurity rate"},
+    {"name":"","class":"secondary_header","description":"How Nutrition Programs Help"},
     {"name":"snap","class":"secondary","description":"SNAP participants"},
     {"name":"snap_percentage","class":"secondary","description":"Percentage of population receiving SNAP"},
     {"name":"wic","class":"secondary","description":"Number of WIC participants"},
