@@ -38,6 +38,7 @@ return function() {
 
 
   var colors =  ['#FFC77F', '#FDB96F', '#FCBA51', '#FAB247', '#F9913E', '#F78931', '#F67124', '#F46817', '#F64B06', '#F54002'];
+  var colorKey = ['0% - 10%', '10% - 20%', '20% - 30%', '30% - %40', '40% - 50%', '50% - 60%', '60% - 70%', '70% - 80%', '80% - 90%', '90% - 100%'];
 
   var getColor = function(d) {
     var idx = Math.round((colors.length-1)*d);
@@ -61,7 +62,9 @@ return function() {
     "selectCounty":selectCounty,
     "hoverCounty":hoverCounty,
     "leaveCounty":leaveCounty,
-    "coloredCounty": coloredCounty
+    "coloredCounty": coloredCounty,
+    "colors": colors,
+    "colorKey":colorKey
   };
 };
 })(jQuery);

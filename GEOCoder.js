@@ -15,12 +15,17 @@ var countyDataMap_GEOCoder = (function($){
     }
 
       var GEOData = countyDataMap_CountyGEOData;
-      var hungerFields = countyDataMap_Data.fields;
+    var hungerColorKeys = countyDataMap_Data.colorKeys;
+    var hungerFields = countyDataMap_Data.fields;
       var hungerData = countyDataMap_Data.data;
 
-      var getCountyFields = function(){
-        return hungerFields;
-      };
+    var getColorKeys = function(){
+      return hungerColorKeys;
+    };
+
+    var getCountyFields = function(){
+      return hungerFields;
+    };
 
       var getCountyData = function(){
       var temp = [];
@@ -41,6 +46,7 @@ var countyDataMap_GEOCoder = (function($){
 
     return {
       "getStateBoxData": getStateBoxData,
+      "getColorKeys": getColorKeys,
       "getCountyFields": getCountyFields,
       "getCountyData": getCountyData
     };

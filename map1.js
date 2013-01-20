@@ -9,11 +9,14 @@
     var map;
     var geojson;
     var $county_info = $('#county-info ul');
-    var $county_template = $("li:first",$county_info);
-		
+    var $county_template = $county_info.children(".demographic-data");
+    var $key_template = $county_info.children(".demographic-key");
+
     var GEOCoder = countyDataMap_GEOCoder();
     var GEOStyles = countyDataMap_GEOStyles();
     var stateBoxData = GEOCoder.getStateBoxData();
+    var countyColorKeys = GEOCoder.getColorKeys();
+    var countyColorKeyIdx = 0;
     var countyFields = GEOCoder.getCountyFields();
     var countyData = GEOCoder.getCountyData();
 
@@ -41,7 +44,7 @@
     };
 
     var getColorDefiningValue = function(feature){
-      return feature.properties.food_ins_rate/100;
+      return feature.properties[countyColorKeys[countyColorKeyIdx]]/100;
     };
 
     var style = function(feature) {
@@ -124,7 +127,7 @@
     };
 
     var addValueHTML = function(props, field){
-      $template = $county_template.clone();
+      var $template = $county_template.clone();
       $template.addClass(field.name);
       $template.addClass(field.class);
       $(".demographic-data-label",$template).text(field.description);
@@ -132,16 +135,56 @@
       $county_info.append($template);
     };
 
+    var updateInfo_county = function(props){
+      $county_info.html("");
+      var idx = 0;
+      for(idx = 0; idx<countyFields.length; idx++ ){
+        addValueHTML(props, countyFields[idx]);
+      }
+    };
+
+    var addKeyHTML = function(value, key){
+      var $template = $key_template.clone();
+      var $key = $template.children(".demographic-key-label");
+      $key.html("&nbsp;");
+      $key.css("background-color",value);
+      $(".demographic-key-value",$template).text(key);
+      $county_info.append($template);
+    };
+
+    var addKeyTextHTML = function(label, text){
+      var $template = $key_template.clone();
+      $template.children(".demographic-key-label").text(label);
+      $template.children(".demographic-key-value").text(text);
+      $county_info.append($template);
+    };
+
+    var getColorKeyDescription = function(){
+      var idx = 0;
+      for(idx = 0; idx<countyFields.length; idx++){
+        if(countyFields[idx].name == countyColorKeys[countyColorKeyIdx]){
+          return countyFields[idx].description;
+        }
+      }
+      return "nix";
+    };
+
+    var updateInfo_key = function(){
+      $county_info.html("");
+      addKeyTextHTML("Legend",getColorKeyDescription())
+      var idx = 0;
+      for(idx = 0; idx<GEOStyles.colors.length; idx++ ){
+        addKeyHTML(GEOStyles.colors[idx],GEOStyles.colorKey[idx]);
+      }
+      addKeyTextHTML("","Hover over a county for more information.")
+    };
+
     var updateInfo = function (props) {
       if(props)
       {
-        $county_info.html("");
-        var idx = 0;
-        for(idx = 0; idx<countyFields.length; idx++ ){
-          addValueHTML(props, countyFields[idx]);
-        }
+        updateInfo_county(props);
       }else{
-        $county_info.html("");
+        updateInfo_key();
       }
     };
 

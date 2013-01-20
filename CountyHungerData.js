@@ -1,15 +1,17 @@
 var countyDataMap_Data ={
 
+  "colorKeys":["food_ins_rate","food_ins_rate_child","snap_percentage"],
+
   "fields":
   [
-    {"name":"county_name","class":"header","description":"Hunger in"},
+    {"name":"county_name","class":"header","description":"County"},
     {"name":"population","class":"primary","description":"Total population"},
     {"name":"food_ins_rate","class":"primary","description":"Food insecurity rate"},
     {"name":"food_ins_rate_child","class":"primary","description":"Child food insecurity rate"},
     {"name":"snap","class":"secondary","description":"SNAP participants"},
     {"name":"snap_percentage","class":"secondary","description":"Percentage of population receiving SNAP"},
     {"name":"wic","class":"secondary","description":"Number of WIC participants"},
-    {"name":"free_lunch","class":"secondary","description":"Number Free and Reduced-Price School Lunch recipients"},
+    {"name":"free_lunch","class":"secondary","description":"Number Free and Reduced-Price School Lunch recipients"},
     {"name":"free_breakfast","class":"secondary","description":"Number of Free and Reduced-Price School Breakfast recipients"},
     {"name":"food_banks","class":"secondary","description":"Number of State Food Purchase Program (Food Banks) participants"}
   ],
